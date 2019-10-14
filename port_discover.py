@@ -34,18 +34,18 @@ def swescaner(ip,p_inicio,p_fin):
         for puerto in range(int(p_inicio),int(p_fin)):
             respuesta = escaner(ip,puerto)
             if(respuesta == True):
-                print("El puerto "+puerto+" está abierto en "+ip)
-
+                print("El puerto "+str(puerto)+" está abierto en "+ip)
 
 def escaner(ip,puerto):
     skt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
+        skt.settimeout(0.03)
         respuesta = skt.connect((ip, int(puerto)))
         skt.close()
-        return True
+        return True;
     except:
         skt.close()
-        return False
+        return False;
     
 def main():
     print("Bienvenido al escaner de puertos")
